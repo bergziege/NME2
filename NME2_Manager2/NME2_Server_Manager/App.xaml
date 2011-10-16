@@ -1,0 +1,13 @@
+﻿<Application x:Class="NME2_Server_Manager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+    <Application.Resources>
+
+        <ResourceDictionary x:Key="nmeResources"  Source="/NME2_Server_Manager;component/Nme2Styles.xaml" />
+        <ResourceDictionary x:Key="nmeResourcesCombobox"  Source="/NME2_Server_Manager;component/Nme2Styles_Combobox.xaml" />
+        <ResourceDictionary x:Key="nmeResourcesButton"  Source="/NME2_Server_Manager;component/Nme2Styles_Button.xaml" />
+        <!--<ResourceDictionary x:Key="combobox"  Source="/NME2_Server_Manager;component/ComboBox.xaml" />-->
+
+    </Application.Resources>
+</Application>

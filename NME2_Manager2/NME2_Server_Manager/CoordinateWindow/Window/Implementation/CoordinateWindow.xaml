@@ -1,0 +1,92 @@
+﻿<Window x:Class="NME2_Server_Manager.CoordinateWindow.Window.Implementation.CoordinateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converter="clr-namespace:NME2_Server_Manager.Converter" 
+        xmlns:dto="clr-namespace:NME2_Server_Manager.Dto"
+        Title="Coordinates"
+        Height="566"
+        Width="755"
+        SizeToContent="Height"
+        mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DesignHeight="566" xmlns:my="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation">
+    <Window.Resources>
+
+        
+        
+        <ResourceDictionary x:Key="Styles">
+            <converter:DoubleToIntegerConverter x:Key="d2nConv"></converter:DoubleToIntegerConverter>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="coordinateSource"
+                              d:DesignSource="{d:DesignInstance dto:CoordinateDto, CreateList=True}" />
+                </ResourceDictionary>
+                <ResourceDictionary  Source="/NME2_Server_Manager;component/Nme2Styles.xaml"></ResourceDictionary>
+                <ResourceDictionary  Source="/NME2_Server_Manager;component/Nme2Styles_Combobox.xaml"></ResourceDictionary>
+                <ResourceDictionary  Source="/NME2_Server_Manager;component/Nme2Styles_Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Window.Resources>
+    <Grid Background="#FF3E3E3E" DataContext="{StaticResource coordinateSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="502*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="71"/>
+            <ColumnDefinition Width="160*"/>
+        </Grid.ColumnDefinitions>
+
+        <my:GMapControl Name="map" Grid.RowSpan="2" VerticalAlignment="Top" DockPanel.Dock="Top" Height="525" Margin="0" />
+        
+        <Slider Name="ZoomSlider" Grid.Column="1" Value="5" Orientation="Vertical" Grid.RowSpan="2" Maximum="20" Minimum="0" TickFrequency="1" ValueChanged="ZoomSlider_ValueChanged"></Slider>
+
+        <!--Target Symbol-->
+        <Image Source="../../../Resources/target.png" Grid.Column="2" Margin="0,5,0,0" Stretch="Fill" StretchDirection="Both" Width="32" Height="32" VerticalAlignment="Top"></Image>
+        
+        <!--Maps Link functions-->
+
+        <StackPanel Grid.Column="3" Grid.Row="0" Margin="0,5,0,10">
+            <Label Style="{DynamicResource WhiteForeground}" Content="Current Position" FontWeight="Bold"></Label>
+            <TextBox Name="txtLat" Text="{Binding Lat}" Style="{DynamicResource roundTextBox}" Tag="Lat" TextChanged="TxtLatTextChanged"></TextBox>
+            <TextBox Name="txtLon" Text="{Binding Lon}" Style="{DynamicResource roundTextBox}" Tag="Lon" TextChanged="TxtLonTextChanged"></TextBox>
+                <Button Name="btnAccept" Content="Accept" Click="btnAccept_Click" Visibility="Visible"></Button>
+            
+        </StackPanel>
+        
+        <!--Project target symbol-->
+        <Image Visibility="Collapsed" Name="imgProjection" Grid.Column="2" Source="../../../Resources/target_projection.png" Stretch="Fill" Grid.Row="1" Width="64" Height="32" VerticalAlignment="Top"></Image>
+        
+        <!--Projection functions-->
+        <StackPanel Visibility="Collapsed" Grid.Column="3" Grid.Row="1" Name="stackCoordinateProjection">
+            <Label Style="{DynamicResource WhiteForeground}" Content="Coordinate Projection" FontWeight="Bold"></Label>
+            <TextBox Name="txtHeading" Style="{DynamicResource roundTextBox}" Tag="Heading" />
+            <TextBox Name="txtDistance" Style="{DynamicResource roundTextBox}" Tag="Distance"/>
+            <Label  Style="{DynamicResource WhiteForeground}">
+                <Label.Content>
+                    <Binding Path="Coordinates.Lat">
+                        <Binding.Converter>
+                            <converter:DisplayCoordinateConverter></converter:DisplayCoordinateConverter>
+                        </Binding.Converter>
+                    </Binding>
+                </Label.Content>
+            </Label>
+            <Label Style="{DynamicResource WhiteForeground}">
+                <Label.Content>
+                    <Binding Path="Coordinates.Lon">
+                        <Binding.Converter>
+                            <converter:DisplayCoordinateConverter></converter:DisplayCoordinateConverter>
+                        </Binding.Converter>
+                    </Binding>
+                </Label.Content>
+            </Label>
+        </StackPanel>
+        <DockPanel LastChildFill="True" Grid.RowSpan="2">
+        
+        </DockPanel>
+    </Grid>
+</Window>

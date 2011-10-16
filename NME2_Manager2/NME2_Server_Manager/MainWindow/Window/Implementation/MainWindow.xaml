@@ -1,0 +1,651 @@
+﻿<Window x:Class="NME2_Server_Manager.MainWindow.Window.Implementation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NME2 Server Management"
+        Height="438"
+        Width="1080"
+        mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:NME2_Server_Manager.Nme2Ws"
+        xmlns:converter="clr-namespace:NME2_Server_Manager.Converter"
+        Loaded="WindowLoaded"
+        Opacity="1"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="False">
+    <Window.Resources>
+        <ResourceDictionary x:Key="Styles">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="missionViewSource"
+                                          d:DesignSource="{d:DesignInstance my:Mission, CreateList=True}" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="missionObjectViewSource"
+                                          d:DesignSource="{d:DesignInstance my:MissionObject, CreateList=True}" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="simObjectViewSource"
+                                          d:DesignSource="{d:DesignInstance my:SimObject, CreateList=True}" />
+                </ResourceDictionary>
+                <!--<ResourceDictionary  Source="/NME2_Server_Manager;component/ComboBox.xaml">
+
+                </ResourceDictionary>-->
+                <ResourceDictionary  Source="/NME2_Server_Manager;component/Nme2Styles.xaml"></ResourceDictionary>
+                <ResourceDictionary  Source="/NME2_Server_Manager;component/Nme2Styles_Combobox.xaml"></ResourceDictionary>
+                <ResourceDictionary  Source="/NME2_Server_Manager;component/Nme2Styles_Button.xaml"></ResourceDictionary>
+                
+            </ResourceDictionary.MergedDictionaries>
+        
+
+        <DataTemplate x:Key="MissionItem">
+            <Border Margin="5"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+                    CornerRadius="4">
+                <Grid Margin="3"
+                      Background="#FF454545">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <!--<RowDefinition></RowDefinition>-->
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="{Binding Mission.Name}"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           FontWeight="Bold"
+                           Style="{DynamicResource GrayForeground}" />
+                    <Button Name="btnShowMap"
+                            Style="{DynamicResource Flat}"
+                            Click="btnShowMap_Click"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Tag="{Binding Path=Mission}"
+                            Width="auto"
+                            HorizontalAlignment="Right">
+                        <Image Source="/NME2_Server_Manager;component/Resources/target.png"
+                               Width="16"
+                               Height="16"
+                               Stretch="Fill"></Image>
+                    </Button>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           Style="{DynamicResource GrayForeground}">
+                        <Label.Content>
+                            <Binding Path="Mission.Active">
+                                <Binding.Converter>
+                                    <converter:DisplayRangeConverter></converter:DisplayRangeConverter>
+                                </Binding.Converter>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
+
+                    <Label Grid.Column="1"
+                           Grid.Row="1"
+                           Style="{DynamicResource GrayForeground}">
+                        <Label.Content>
+                            <Binding Path="Mission.MissionRange">
+                                <Binding.Converter>
+                                    <converter:DisplayActiveConverter></converter:DisplayActiveConverter>
+                                </Binding.Converter>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MissionItemSelected">
+            <Border Margin="5"
+                    BorderThickness="2"
+                    BorderBrush="Yellow"
+                    CornerRadius="4">
+                <Grid Margin="3"
+                      Background="#FF454545">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <!--<RowDefinition></RowDefinition>-->
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="{Binding Mission.Name}"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           FontWeight="Bold"
+                           Style="{DynamicResource WhiteForeground}" />
+                    <Button Name="btnShowMap"
+                            Style="{DynamicResource Flat}"
+                            Click="btnShowMap_Click"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Tag="{Binding Path=Mission}"
+                            Width="auto"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right">
+                        <Image Source="/NME2_Server_Manager;component/Resources/target.png"
+                               Width="16"
+                               Height="16"
+                               Stretch="Fill"></Image>
+                    </Button>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           Style="{DynamicResource WhiteForeground}">
+                        <Label.Content>
+                            <Binding Path="Mission.Active">
+                                <Binding.Converter>
+                                    <converter:DisplayRangeConverter></converter:DisplayRangeConverter>
+                                </Binding.Converter>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
+
+                    <Label Grid.Column="1"
+                           Grid.Row="1"
+                           Style="{DynamicResource WhiteForeground}">
+                        <Label.Content>
+                            <Binding Path="Mission.MissionRange">
+                                <Binding.Converter>
+                                    <converter:DisplayActiveConverter></converter:DisplayActiveConverter>
+                                </Binding.Converter>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type ListBoxItem}"
+               x:Key="ContainerStyle">
+            <Setter Property="Control.Foreground"
+                    Value="#FFDBDBDB" />
+            <Setter Property="ContentTemplate"
+                    Value="{StaticResource MissionItem}" />
+            <Style.Resources>
+                <!--SelectedItem with focus-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                 Color="Transparent"
+                                 Opacity=".4" />
+                <!--SelectedItem without focus-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                                 Color="Transparent"
+                                 Opacity=".4" />
+            </Style.Resources>
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected"
+                         Value="True">
+                    <Setter Property="ContentTemplate"
+                            Value="{StaticResource MissionItemSelected}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+</ResourceDictionary>
+    </Window.Resources>
+    <Grid ShowGridLines="False"
+          SnapsToDevicePixels="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Column 1-->
+        <DockPanel Grid.Column="0"
+                   LastChildFill="True"
+                   Background="#FF454545"
+                   DataContext="{StaticResource missionViewSource}">
+
+            <!--Save & Cancel -->
+            <WrapPanel Margin="10"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       DockPanel.Dock="Bottom">
+                <Button Name="btnAddMission"
+                        Background="Yellow"
+                        Content="Add Mission"
+                        Margin="0,0,5,0"
+                        Click="BtnNewMissionClick"></Button>
+                <Button Name="btnRemoveMission"
+                        Background="Red"
+                        Content="Remove Mission"
+                        Click="Button_Click_3"></Button>
+            </WrapPanel>
+
+            <DockPanel Margin="0,0,10,0"
+                       DockPanel.Dock="Top"
+                       LastChildFill="True">
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Missions"
+                           DockPanel.Dock="Top"
+                           Name="label1"
+                           Style="{DynamicResource WhiteForeground}"
+                           FontSize="14" />
+                    <Button Name="btnRefreshAll"
+                            Background="#FF2F8DFF"
+                            Content="Refresh"
+                            Click="btnRefreshAll_Click"
+                            Grid.Column="1"></Button>
+                </Grid>
+
+                <ListBox Name="lstMissions"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         DockPanel.Dock="Top"
+                         HorizontalContentAlignment="Stretch"
+                         ItemsSource="{Binding}"
+                         Margin="20,0,0,0"
+                         SelectionChanged="ListBoxSelectionChanged"
+                         SnapsToDevicePixels="True"
+                         ItemContainerStyle="{DynamicResource ContainerStyle}">
+                </ListBox>
+            </DockPanel>
+        </DockPanel>
+
+        <!--Column 2-->
+        <DockPanel Grid.Column="1"
+                   LastChildFill="True"
+                   Background="#FF454545">
+            <!--Save & Cancel -->
+            <WrapPanel Margin="10"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       DockPanel.Dock="Bottom">
+                <Button Name="btnSaveMission"
+                        Background="Green"
+                        Content="Save Mission"
+                        Margin="0,0,5,0"
+                        Click="ButtonClick3"></Button>
+                <Button Name="btnAddMissionObject"
+                        Background="Yellow"
+                        Content="Add Object"
+                        Margin="0,0,5,0"
+                        Click="BtnAddMissionObjectClick"></Button>
+                <Button Name="btnRemoveMissionObject"
+                        Background="Red"
+                        Content="Remove Object"
+                        Click="BtnDeleteMissionObjectClick"></Button>
+            </WrapPanel>
+
+            <DockPanel Margin="0,0,10,0"
+                       DockPanel.Dock="Top"
+                       DataContext="{StaticResource missionViewSource}">
+                <!--Title-->
+                <Label DockPanel.Dock="Top"
+                       Content="Mission Objects"
+                       Name="label2"
+                       Style="{DynamicResource WhiteForeground}"
+                       FontSize="14" />
+
+                <!--Name of Mission-->
+                <WrapPanel DockPanel.Dock="Top"
+                           Margin="20,0,0,0">
+                    <Label Content="Name:"
+                           Width="70"
+                           Foreground="#FFDBDBDB" />
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Mission Name"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="nameTextBox"
+                             Text="{Binding Path=Mission.Name, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             Width="120" />
+                </WrapPanel>
+
+                <!--Center Lat-->
+                <WrapPanel DockPanel.Dock="Top"
+                           Margin="20,0,0,0">
+                    <Label Content="Center Lat:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Center Lat"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="centerLatTextBox"
+                             Text="{Binding Path=Mission.CenterLat, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                    <Button Name="btnShowMapMissionLat"
+                            Style="{DynamicResource Flat}"
+                            Click="btnShowMapMission_Click"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Width="auto"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right">
+                        <Image Source="/NME2_Server_Manager;component/Resources/target.png"
+                               Width="16"
+                               Height="16"
+                               Stretch="Fill"></Image>
+                    </Button>
+                </WrapPanel>
+
+                <!--Center Lon-->
+                <WrapPanel DockPanel.Dock="Top"
+                           Margin="20,0,0,0">
+                    <Label Content="Center Lon:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Center Lon"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="centerLonTextBox"
+                             Text="{Binding Path=Mission.CenterLon, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                    <Button Name="btnShowMapMissionLon"
+                            Style="{DynamicResource Flat}"
+                            Click="btnShowMapMission_Click"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Width="auto"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right">
+                        <Image Source="/NME2_Server_Manager;component/Resources/target.png"
+                               Width="16"
+                               Height="16"
+                               Stretch="Fill"></Image>
+                    </Button>
+                </WrapPanel>
+
+                <!--Range-->
+                <WrapPanel DockPanel.Dock="Top"
+                           Margin="20,0,0,0">
+                    <Label Content="Range:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Range"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="rangeTextBox"
+                             Text="{Binding Path=Mission.MissionRange, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+
+                <!--Active-->
+                <WrapPanel DockPanel.Dock="Top"
+                           Margin="20,0,0,0">
+                    <Label Content="Active:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Active"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="activeTextBox"
+                             Text="{Binding Path=Mission.Active, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+
+                <!--Mission Objects-->
+                <DataGrid DockPanel.Dock="Top"
+                          AutoGenerateColumns="False"
+                          Background="Transparent"
+                          Grid.Column="1"
+                          EnableRowVirtualization="True"
+                          VerticalAlignment="Stretch"
+                          ItemsSource="{Binding Source={StaticResource missionObjectViewSource}}"
+                          Margin="20,0,0,0"
+                          Name="missionObjectDataGrid"
+                          RowDetailsVisibilityMode="Visible"
+                          SelectionChanged="MissionObjectDataGridSelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="activeColumn1"
+                                            Binding="{Binding Path=Active}"
+                                            Header="Active"
+                                            Width="*" />
+                        <DataGridTextColumn x:Name="headingColumn"
+                                            Binding="{Binding Path=Heading}"
+                                            Header="Heading"
+                                            Width="*" />
+                        <DataGridTextColumn x:Name="latColumn"
+                                            Binding="{Binding Path=Lat}"
+                                            Header="Lat"
+                                            Width="*" />
+                        <DataGridTextColumn x:Name="lonColumn"
+                                            Binding="{Binding Path=Lon}"
+                                            Header="Lon"
+                                            Width="*" />
+                        <DataGridTextColumn x:Name="name"
+                                            Binding="{Binding Path=Name, Mode=OneWay}"
+                                            Header="Name"
+                                            Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+
+        </DockPanel>
+
+        <!--Column 3-->
+        <DockPanel Grid.Column="2"
+                   LastChildFill="True"
+                   Background="#FF454545">
+            <StackPanel DockPanel.Dock="Top"
+                        DataContext="{StaticResource missionObjectViewSource}">
+                <!--Title-->
+                <Label Content="Object Details"
+                       Style="{DynamicResource WhiteForeground}"
+                       FontSize="14"></Label>
+                <!--Used Sim Object-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="SimObject:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <ComboBox Height="23"
+                              DisplayMemberPath="SimObject.SimName"
+                              SelectedValuePath="SimObject.Id"
+                              SelectedValue="{Binding Path=MissionObject.SimObject_Id}"
+                              ItemsSource="{Binding Source={StaticResource simObjectViewSource}}"
+                              HorizontalAlignment="Left"
+                              Margin="3"
+                              Name="cmbSimObjects"
+                              VerticalAlignment="Center"
+                              Width="120" />
+                </WrapPanel>
+                <!--Active-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Active:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Active"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="objectActiveTextBox"
+                             Text="{Binding Path=MissionObject.Active, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+                <!--Lat-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Lat:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Lat"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="latTextBox"
+                             Text="{Binding Path=MissionObject.Lat, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                    <Button Name="btnShowMapObjectLat"
+                            Style="{DynamicResource Flat}"
+                            Click="BtnShowMapObjectClick"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Width="auto"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right">
+                        <Image Source="/NME2_Server_Manager;component/Resources/target.png"
+                               Width="16"
+                               Height="16"
+                               Stretch="Fill"></Image>
+                    </Button>
+                </WrapPanel>
+                <!--Lon-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Lon:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Lon"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="lonTextBox"
+                             Text="{Binding Path=MissionObject.Lon, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                    <Button Name="btnShowMapObjectLon"
+                            Style="{DynamicResource Flat}"
+                            Click="BtnShowMapObjectClick"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Width="auto"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right">
+                        <Image Source="/NME2_Server_Manager;component/Resources/target.png"
+                               Width="16"
+                               Height="16"
+                               Stretch="Fill"></Image>
+                    </Button>
+                </WrapPanel>
+                <!--Heading-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Heading:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Heading"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="headingTextBox"
+                             Text="{Binding Path=MissionObject.Heading, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+                <!--Alt-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Alt:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Alt"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="altitudeTextBox"
+                             Text="{Binding Path=MissionObject.Altitude, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+                <!--On Ground-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="On Ground:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Heading"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="onGroundTextBox"
+                             Text="{Binding Path=MissionObject.OnGround, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+                <!--Pitch-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Pitch:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="On Ground"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="pitchTextBox"
+                             Text="{Binding Path=MissionObject.Pitch, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+                <!--Bank-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Bank:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Bank"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="bankTextBox"
+                             Text="{Binding Path=MissionObject.Bank, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+                <!--Yaw-->
+                <WrapPanel Margin="20,0,0,0">
+                    <Label Content="Yaw:"
+                           Width="70"
+                           Foreground="#FFDBDBDB"></Label>
+                    <TextBox Style="{DynamicResource roundTextBox}"
+                             Tag="Yaw"
+                             Height="23"
+                             HorizontalAlignment="Left"
+                             Margin="3"
+                             Name="yawTextBox"
+                             Text="{Binding Path=MissionObject.Yaw, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+                </WrapPanel>
+
+            </StackPanel>
+            <!--Save & Cancel -->
+            <WrapPanel DockPanel.Dock="Bottom"
+                       Margin="10"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right">
+                <Button Content="Save"
+                        Width="70"
+                        Margin="0,0,5,0"
+                        Visibility="Collapsed"></Button>
+            </WrapPanel>
+        </DockPanel>
+    </Grid>
+</Window>
