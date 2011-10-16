@@ -1,0 +1,56 @@
+\documentclass[11pt,a4paper,notitlepage]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ngerman}
+\usepackage[colorlinks=false,pdfborder=0]{hyperref}
+\author{Bernd Boruttau}
+\title{NME2 Server\\Anforderungen}
+\date{18.10.2010}
+\begin{document}
+\maketitle
+
+\section{Inhalt}
+Dieses Dokument beschreibt die Anforderungen an die Oberfläche bzw. die Funktionen des NME Server im Frontend. Alle Funktionen das Backend (Client / Manager) betreffend wurden absichtlich ausgelassen.
+
+\section{Beschreibung NME2}
+Bei NME bzw. NME2 handelt es sich um ein Addon für dei FSX Flugsimulation von Mircosoft\copyright.
+Das Programm ermöglicht dabei die ferngesteuerte Verwaltung bzw. Platzierung von Objekten im Simulator. Die Objekte werden als Missionen verwaltet und können im Manager bearbeitet werden.
+Neben dem Client (FSX Seitig) und dem Manager (Verwaltung) besteht das Addon aus einer Webanwendung.
+Über diese , Server genannte Anwendung, kann sich der Benutzer einen Überblick über die Missionen bzw Objekte und andere Teilnehmer verschaffen.
+
+\section{Funktionalitäten des Servers}
+Der Server soll dem Benutzer folgende Funktionalitäten bieten:
+\begin{itemize}
+\item Übersicht über alle am System angemeldeten Teilnehmer
+\item Übersicht über die einzelnen "Missionen" und ihrer Objekte.
+\item Übersicht über alle auf diesem Server zur Verfügung stehenden Objekte
+\end{itemize}
+\paragraph{}
+Auf eine Benutzerverwaltung wird zum jetzigen Zeitpunkt bewusst verzichtet!\\
+Es sind daher keine Login oder Profilbereiche vorzusehen.
+\paragraph{}
+Folgend eine nähere Beschreibung der einzelnen Punkte und Details.
+
+\subsection{Teilnehmerübersicht}
+\paragraph{}
+Alle Teilnehmer sollen auf einer Karte dargestellt werden. Zusätzlich sollen zu einem einzelnen, frei wählbaren Teilnehmer Details eingeblendet werden können. Die Teilnehmer sollen zusätzlich zur Kartenansicht tabellarisch angezeigt werden. Wünschenswert wäre eine "Echtzeit"-Anzeige der Teilnehmer.
+
+\paragraph{}
+Als Details zu einen Teilnehmer zählen z.b. seine Koordinaten, Höhe, Geschwindigkeit und die Missionen die für diesen Teilnehmer aktiv sind.
+Des weiteren soll eine direkte Verlinkung der Missionen des Teilnehmers zu den Missionsdetails erfolgen.
+
+\subsection{Missionsübersicht}
+\paragraph{}
+Zusätzlich zu den Teilnehmern sollen die Missionen auf der Karte kenntlich gemacht werden (Mittenposition und Radius). Außerdem sollen die einzelnen Elemente einer oder mehrerer Missionen angezeigt werden können.
+ \paragraph{}
+Zusätzlich zur Kartenansicht soll eine tabellarische Auflistung der Missionen erfolgen. Ausgehend von der Tabelle sollen die Missionsdetails in Textform angezeigt werden können.
+\paragraph{}
+Des weiteren soll es eine Exportmöglichkeit der aktuell auf der Karte angezeigten Daten in das KML bzw. KMZ Format geben.
+
+\subsection{Objektübersicht}
+\paragraph{}
+In dieser Zusammenfassung sollen lediglich alle auf dem Server verfügbaren Objekte angezeigt werden. Es ist auf eine sinnvolle Anzahl von Elementen Pro Seite zu achten (maximal 50 Elemente).\\
+Die Elemente sollen dabei mit ihren hinterlegten Daten sowie einem Bild dargestellt werden.
+\end{document}

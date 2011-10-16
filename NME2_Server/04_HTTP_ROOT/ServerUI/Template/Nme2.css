@@ -1,0 +1,127 @@
+/* 
+    Document   : Nme2
+    Created on : 09.01.2011, 13:56:45
+    Author     : bergziege
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+    font: 12px Verdana, Arial, Helvetica, sans-serif;
+    margin: 0; /* Es empfiehlt sich, margin (Rand) und padding (Auff�llung) des Body-Elements auf 0 einzustellen, um unterschiedlichen Browser-Standardeinstellungen Rechnung zu tragen. */
+    padding: 0;
+    color: #000;
+}
+
+.navbar {
+    width:210px;
+    float:left;
+    height:100%;
+    background-image: url(Design/bg_leftblack_left_10.png);
+    background-repeat: repeat-y;
+}
+
+.navbar .linkItem {
+    margin-left:15px;
+    margin-bottom:5px;
+}
+
+.navbar .linkItem  a:active{
+    color:white;
+    text-decoration: none;
+}
+
+.navbar .linkItem  a:visited{
+    color:white;
+    text-decoration: none;
+}
+
+.navbar .linkItem  a:link{
+    color:white;
+    text-decoration: none;
+}
+
+.navbar .linkItem  a:hover{
+    text-decoration: underline;
+}
+
+.linkItem img{
+    vertical-align: bottom;
+    padding-right:5px;
+}
+
+.content {
+    margin-top:10px;
+    margin-left:10px;
+    width:700px;
+    float:left;
+}
+
+.content .mapSideBar{
+    font-size: 12px;
+    width:100px;
+}
+
+.content .mapSideBar a:link{
+    color:black;
+    text-decoration: none;
+}
+
+.content .mapSideBar a:hover{
+    color:black;
+    text-decoration: none;
+}
+
+.content .mapSideBar a:active{
+    color:black;
+    text-decoration: none;
+}
+
+.content .mapSideBar a:visited{
+    color:black;
+    text-decoration: none;
+}
+
+.content .MissionTable{
+    font-size: 10pt;
+    float:left;
+    width:600px;
+}
+
+.content .mailform input{
+    border: 2px solid #999;
+    width:400px;
+}
+
+.content .mailform textarea{
+    border: 2px solid #999;
+    width:400px;
+}
+
+.content .mailform input:focus {
+    border: 2px solid #333;
+    background-color: lightyellow;
+}
+
+.content .mailform textarea:focus {
+    border: 2px solid #333;
+    background-color: lightyellow;
+}
+
+.content .formresponse{
+    margin-bottom: 10px;
+    color:red;
+}
+
+.content .formsendstatus{
+    color:green;
+}
+
+#closing{
+    clear:both;
+}

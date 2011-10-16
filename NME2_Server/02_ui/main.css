@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+/*
+Main Style
+*/
+
+body {
+    font: 12px Verdana, Arial, Helvetica, sans-serif;
+    margin: 0; /* Es empfiehlt sich, margin (Rand) und padding (Auffüllung) des Body-Elements auf 0 einzustellen, um unterschiedlichen Browser-Standardeinstellungen Rechnung zu tragen. */
+    padding: 0;
+    text-align: center; /* Hierdurch wird der Container in IE 5*-Browsern zentriert. Dem Text wird dann im #container-Selektor die Standardausrichtung left (links) zugewiesen. */
+    color: #000;
+    background-color: #1a1a1a;
+}
+
+#wrapper{
+    text-align:center;
+    width:960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header{
+    background-color: #1a1a1a;
+    height:130px;
+    text-align: center;
+}
+
+#headerSeperator{
+    height:39px;
+    background-image: url("Skin/top.png");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-color: #ddd;
+}
+
+.logo{
+    background-image: url("Skin/logo.png");
+    width:140px;
+    height:140px;
+    background-repeat: no-repeat;
+    background-position: center;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#header #wrapper .buttons{
+    width:960px;
+
+}
+
+#navElement{
+    background-image: url("Skin/button.png");
+    width:140px;
+    height:140px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float:left;
+}
+
+#navElement .home{
+    background-image: url("Skin/home.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100%;
+}
+
+#header .buttons .user{
+    background-image: url("Skin/user.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100%;
+}
+
+#header .buttons .missions{
+    background-image: url("Skin/map.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100%;
+}
+
+#header .buttons .help{
+    background-image: url("Skin/help.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100%;
+}
+
+#header .buttons .download{
+    background-image: url("Skin/download.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100%;
+}
+
+#content{
+background-color: #ddd;
+}
+
+#content .left{
+    float:left;
+    text-align: left;
+    width: 630px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#content .right{
+    text-align: left;
+    width:270px;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#footerSeperator{
+    height:47px;
+    background-image: url("Skin/bottom.png");
+    background-repeat: repeat-x;
+    background-position: top;
+    background-color: #ddd;
+}
+
+#footer{
+    background-color: #1a1a1a;
+}

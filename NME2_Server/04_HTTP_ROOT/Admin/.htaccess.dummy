@@ -1,0 +1,5 @@
+# .htaccess-Datei für Web-Verzeichnis /service
+AuthType Basic
+AuthName "Service-Bereich"
+AuthUserFile C:/http_private/.htusers
+Require valid-user
