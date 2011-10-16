@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<UserSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ServerPath>http://nyx/priv_nme2/</ServerPath>
+  <SimObjectsPath>D:\Files\Develop\NME2_Client\NME_Client\bin\Debug\Objects</SimObjectsPath>
+  <Username>bergziege</Username>
+  <Interval>5</Interval>
+</UserSettings>

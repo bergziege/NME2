@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NME2</name>
+    </assembly>
+    <members>
+        <member name="T:NME2.UI.MainScreen.View.Implementation.MainView">
+            <summary>
+             Main GUI
+            </summary>
+        </member>
+        <member name="T:NME2.UI.MainScreen.View.IMainView">
+            <summary>
+            Schnittstelle für die Hauptansicht NME2 Client
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestAboutDialog">
+            <summary>
+            Fordert den "Über" Dialog
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.TabChanged">
+            <summary>
+            INformaiert über den Wechsel eines Tab
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestToggleFsxConnectionState">
+            <summary>
+            Fordert das Umschalten des Simconnect Status
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestSync">
+            <summary>
+            Fordert das Synchonisieren der Simobjects
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestSettingsReset">
+            <summary>
+            Fordert das Rücksetzen der Einstellungen
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestSettingsSave">
+            <summary>
+            Fordert das Abspeichern der Einstellungen
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestSettingsLoad">
+            <summary>
+            Fordert das laden der einstellungen.
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestFsxConnect">
+            <summary>
+            Fordert das Herstellen einer Verbindung
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.RequestFscDisconnect">
+            <summary>
+            Fordert das Unterbrechen einer Verbindung
+            </summary>
+        </member>
+        <member name="E:NME2.UI.MainScreen.View.IMainView.NewMessageArrived">
+            <summary>
+            Informiert über das Eintreffen einer neuen Nachricht.
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.FsxConnectionStatus">
+            <summary>
+            Status der Simconnect Verbindung als Text
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.ServerFilePath">
+            <summary>
+            Pfad zur aktuellen server settings datei
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.ServerUrl">
+            <summary>
+            URL des NME2 Servers
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.Username">
+            <summary>
+            Benutzername
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.FsxSimObjectsPath">
+            <summary>
+            Pfad zu den FSX Simobjects
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.RefreshInterval">
+            <summary>
+            Reload Interval der Missionen
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.SelectedTabPage">
+            <summary>
+            Index der aktuell gewählten Tab Seite
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.LogMessages">
+            <summary>
+            Liste mit Log Nachrichten
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.Missions">
+            <summary>
+            Liste mit Missionen
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.IMainView.Handle">
+            <summary>
+            Stellt das Fenster Handle bereit.
+            </summary>
+        </member>
+        <member name="M:NME2.UI.MainScreen.View.Implementation.MainView.#ctor">
+            <summary>
+             Ctor.
+            </summary>
+        </member>
+        <member name="F:NME2.UI.MainScreen.View.Implementation.MainView.components">
+            <summary>
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:NME2.UI.MainScreen.View.Implementation.MainView.Dispose(System.Boolean)">
+            <summary>
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:NME2.UI.MainScreen.View.Implementation.MainView.InitializeComponent">
+            <summary>
+            Erforderliche Methode für die Designerunterstützung.
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.FsxConnectionStatus">
+            <summary>
+            Status der Simconnect Verbindung als Text
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.ServerFilePath">
+            <summary>
+            Pfad zur aktuellen server settings datei
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.ServerUrl">
+            <summary>
+            URL des NME2 Servers
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.Username">
+            <summary>
+            Benutzername
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.FsxSimObjectsPath">
+            <summary>
+            Pfad zu den FSX Simobjects
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.RefreshInterval">
+            <summary>
+            Reload Interval der Missionen
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.SelectedTabPage">
+            <summary>
+            Index der aktuell gewählten Tab Seite
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.LogMessages">
+            <summary>
+            Liste mit Log Nachrichten
+            </summary>
+        </member>
+        <member name="P:NME2.UI.MainScreen.View.Implementation.MainView.Missions">
+            <summary>
+            Liste mit Missionen
+            </summary>
+        </member>
+        <member name="F:NME2.UI.AboutScreen.View.Implementation.AboutView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NME2.UI.AboutScreen.View.Implementation.AboutView.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:NME2.UI.AboutScreen.View.Implementation.AboutView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:NME2.UI.MainScreen.Controller.Implementation.MainViewController">
+            <summary>
+             MainView Controller.
+            </summary>
+        </member>
+        <member name="M:NME2.UI.MainScreen.Controller.Implementation.MainViewController.#ctor(NME2.UI.MainScreen.View.IMainView)">
+            <summary>
+             Ctor.
+            </summary>
+            <param name="attachedView"></param>
+        </member>
+        <member name="T:NME2.Domain.UserSettings">
+            <summary>
+             User settings
+            </summary>
+        </member>
+        <member name="P:NME2.Domain.UserSettings.ServerPath">
+            <summary>
+             Path to NME2 Server
+            </summary>
+        </member>
+        <member name="P:NME2.Domain.UserSettings.SimObjectsPath">
+            <summary>
+             Path to FSX Simobjects
+            </summary>
+        </member>
+        <member name="P:NME2.Domain.UserSettings.Username">
+            <summary>
+             NME2 username
+            </summary>
+        </member>
+        <member name="P:NME2.Domain.UserSettings.Interval">
+            <summary>
+             Query interval
+            </summary>
+        </member>
+        <member name="T:NME2.Service.ISettingsService">
+            <summary>
+             Interface for Settings Service.
+             Allows to save or load settings and define used settings.
+            </summary>
+        </member>
+        <member name="M:NME2.Service.ISettingsService.LoadSettings">
+            <summary>
+             Load settings from settings file
+            </summary>
+        </member>
+        <member name="M:NME2.Service.ISettingsService.SaveSettings">
+            <summary>
+             Save settings to setting file
+            </summary>
+        </member>
+        <member name="P:NME2.Service.ISettingsService.UsedSettingsFile">
+            <summary>
+             Currently used settings file
+            </summary>
+        </member>
+        <member name="P:NME2.Service.ISettingsService.CurrentSettings">
+            <summary>
+            Current Settings or null
+            </summary>
+        </member>
+        <member name="M:NME2.Service.Implementation.SettingsService.LoadSettings">
+            <summary>
+             Load settings from settings file
+            </summary>
+        </member>
+        <member name="M:NME2.Service.Implementation.SettingsService.SaveSettings">
+            <summary>
+             Save settings to setting file
+            </summary>
+        </member>
+        <member name="P:NME2.Service.Implementation.SettingsService.UsedSettingsFile">
+            <summary>
+             Currently used settings file
+            </summary>
+        </member>
+        <member name="P:NME2.Service.Implementation.SettingsService.CurrentSettings">
+            <summary>
+            Current Settings or null
+            </summary>
+        </member>
+        <member name="M:NME2.Program.Main">
+            <summary>
+            Der Haupteinstiegspunkt für die Anwendung.
+            </summary>
+        </member>
+        <member name="T:Com.QueoMedia.Updater.Utilities.DeSerializer">
+            DeSerializer.
+            Serialize and deserialize classes to and from xml files.
+        </member>
+        <member name="M:Com.QueoMedia.Updater.Utilities.DeSerializer.Serialize``1(``0,System.String)">
+            Serialize class T.
+            @param data input data of type T
+            @param file filename to serialize to
+            @return true if finished without error
+        </member>
+        <member name="M:Com.QueoMedia.Updater.Utilities.DeSerializer.Deserializer``1(System.String)">
+            Deserialize class T.
+            @param file filename from file to deserialize
+            @result T class of type T
+        </member>
+        <member name="T:NME2.Nme2Ws.Nme2Ws">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.#ctor">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionServiceGetMissionsWithin(System.Double,System.Double)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionServiceGetMissionsWithinAsync(System.Double,System.Double)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionServiceGetMissionsWithinAsync(System.Double,System.Double,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissions(NME2.Nme2Ws.Mission[])">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissionsAsync(NME2.Nme2Ws.Mission[])">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissionsAsync(NME2.Nme2Ws.Mission[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissions(NME2.Nme2Ws.Mission[])">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissionsAsync(NME2.Nme2Ws.Mission[])">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissionsAsync(NME2.Nme2Ws.Mission[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionServiceGetAllMissionsAsArray">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionServiceGetAllMissionsAsArrayAsync">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.MissionServiceGetAllMissionsAsArrayAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArray">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArrayAsync">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArrayAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArray">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArrayAsync">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArrayAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:NME2.Nme2Ws.Nme2Ws.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="E:NME2.Nme2Ws.Nme2Ws.MissionServiceGetMissionsWithinCompleted">
+            <remarks/>
+        </member>
+        <member name="E:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissionsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:NME2.Nme2Ws.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissionsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:NME2.Nme2Ws.Nme2Ws.MissionServiceGetAllMissionsAsArrayCompleted">
+            <remarks/>
+        </member>
+        <member name="E:NME2.Nme2Ws.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArrayCompleted">
+            <remarks/>
+        </member>
+        <member name="E:NME2.Nme2Ws.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArrayCompleted">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.Mission">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.Id">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.Name">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.Version">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.CenterLat">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.CenterLon">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.MissionRange">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.Mission.Active">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.CustomObject">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.CustomObject.Id">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.CustomObject.Version">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.CustomObject.DownloadPath">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.CustomObject.Description">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.SimObject">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.SimObject.Id">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.SimObject.Name">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.SimObject.SimName">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionObject">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Id">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Mission_Id">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Mission">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.SimObject_Id">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Simobject">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Lat">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Lon">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Altitude">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.OnGround">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Pitch">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Yaw">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Bank">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Heading">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObject.Active">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionServiceGetMissionsWithinCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionServiceGetMissionsWithinCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionServiceGetMissionsWithinCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissionsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissionsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObjectServiceGetMissionObjectsForMissionsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissionsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissionsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionObjectServiceGetAllMissionObjectsForMissionsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionServiceGetAllMissionsAsArrayCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.MissionServiceGetAllMissionsAsArrayCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.MissionServiceGetAllMissionsAsArrayCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArrayCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArrayCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.SimObjectServiceGetAllSimObjectsAsArrayCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArrayCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArrayCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:NME2.Nme2Ws.CustomObjectServiceGetAllCustomObjectsAsArrayCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NME2.Properties.Resources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_LOG_Connected">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Connected ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_LOG_Connection_Closed">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Connection closed ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_LOG_Date_Format">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die {0:dd.MM.yyyy HH:mm} ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_LOG_Filesync_Finished">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die ... filesync finished. ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_LOG_Start_Filesync">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Start filesync ... ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_NME2_Disconnected">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die NME2 - Disconnected ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_SimConnectStatus_Connected">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Connect ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_SimConnectStatus_Disconnected">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Disconnected ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.MainView_Title_Connected">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die NME2 - Connected ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.SimConnection_Error">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Error FSX connect ähnelt.
+            </summary>
+        </member>
+        <member name="P:NME2.Properties.Resources.SimConnection_Name">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die NME2 ähnelt.
+            </summary>
+        </member>
+        <member name="M:NME2.Service.Implementation.MissionService.#ctor(NME2.Service.ISimConnectService,NME2.Service.ISettingsService)">
+            <summary>
+            Ctor.
+            </summary>
+            <param name="simconnectService"></param>
+            <param name="settingsService"></param>
+        </member>
+        <member name="M:NME2.Service.Implementation.MissionService.SimconnectServiceObjectIdArrived(System.UInt32,System.UInt32)">
+            <summary>
+            Wenn eine Object Id vom FSX empfangen wurde ...
+            </summary>
+            <param name="requestId"></param>
+            <param name="objectId"></param>
+        </member>
+        <member name="M:NME2.Service.Implementation.MissionService.GetMissionsForDisplay">
+            <summary>
+            Updates the scenery list on the UI
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://nyx/soap/Nme2Ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://nyx/soap/Nme2Ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://nyx/soap/Nme2Ws">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xsd:complexType name="Mission">
+        <xsd:all>
+          <xsd:element name="Id" type="xsd:int" />
+          <xsd:element name="Name" type="xsd:string" />
+          <xsd:element name="Version" type="xsd:string" />
+          <xsd:element name="CenterLat" type="xsd:double" />
+          <xsd:element name="CenterLon" type="xsd:double" />
+          <xsd:element name="MissionRange" type="xsd:int" />
+          <xsd:element name="Active" type="xsd:int" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Missions">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:Mission[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SimObject">
+        <xsd:all>
+          <xsd:element name="Id" type="xsd:int" />
+          <xsd:element name="Name" type="xsd:string" />
+          <xsd:element name="SimName" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="SimObjects">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:SimObject[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="MissionObject">
+        <xsd:all>
+          <xsd:element name="Id" type="xsd:int" />
+          <xsd:element name="Mission_Id" type="xsd:int" />
+          <xsd:element name="Mission" type="tns:Mission" />
+          <xsd:element name="SimObject_Id" type="xsd:int" />
+          <xsd:element name="Simobject" type="tns:SimObject" />
+          <xsd:element name="Lat" type="xsd:double" />
+          <xsd:element name="Lon" type="xsd:double" />
+          <xsd:element name="Altitude" type="xsd:float" />
+          <xsd:element name="OnGround" type="xsd:int" />
+          <xsd:element name="Pitch" type="xsd:double" />
+          <xsd:element name="Yaw" type="xsd:double" />
+          <xsd:element name="Bank" type="xsd:double" />
+          <xsd:element name="Heading" type="xsd:int" />
+          <xsd:element name="Active" type="xsd:int" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="MissionObjects">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:MissionObject[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CustomObject">
+        <xsd:all>
+          <xsd:element name="Id" type="xsd:int" />
+          <xsd:element name="Version" type="xsd:string" />
+          <xsd:element name="DownloadPath" type="xsd:string" />
+          <xsd:element name="Description" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="CustomObjects">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:CustomObject[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MissionService.GetMissionsWithinRequest">
+    <wsdl:part name="lat" type="xsd:double" />
+    <wsdl:part name="lon" type="xsd:double" />
+  </wsdl:message>
+  <wsdl:message name="MissionService.GetMissionsWithinResponse">
+    <wsdl:part name="return" type="tns:Missions" />
+  </wsdl:message>
+  <wsdl:message name="MissionObjectService.GetMissionObjectsForMissionsRequest">
+    <wsdl:part name="missions" type="tns:Missions" />
+  </wsdl:message>
+  <wsdl:message name="MissionObjectService.GetMissionObjectsForMissionsResponse">
+    <wsdl:part name="return" type="tns:MissionObjects" />
+  </wsdl:message>
+  <wsdl:message name="MissionObjectService.GetAllMissionObjectsForMissionsRequest">
+    <wsdl:part name="missions" type="tns:Missions" />
+  </wsdl:message>
+  <wsdl:message name="MissionObjectService.GetAllMissionObjectsForMissionsResponse">
+    <wsdl:part name="return" type="tns:MissionObjects" />
+  </wsdl:message>
+  <wsdl:message name="MissionService.GetAllMissionsAsArrayRequest" />
+  <wsdl:message name="MissionService.GetAllMissionsAsArrayResponse">
+    <wsdl:part name="return" type="tns:Missions" />
+  </wsdl:message>
+  <wsdl:message name="SimObjectService.GetAllSimObjectsAsArrayRequest" />
+  <wsdl:message name="SimObjectService.GetAllSimObjectsAsArrayResponse">
+    <wsdl:part name="return" type="tns:SimObjects" />
+  </wsdl:message>
+  <wsdl:message name="CustomObjectService.GetAllCustomObjectsAsArrayRequest" />
+  <wsdl:message name="CustomObjectService.GetAllCustomObjectsAsArrayResponse">
+    <wsdl:part name="return" type="tns:CustomObjects" />
+  </wsdl:message>
+  <wsdl:portType name="Nme2WsPortType">
+    <wsdl:operation name="MissionService.GetMissionsWithin">
+      <documentation>Gibt alle relevanten Missionen zurÃ¼ck, in denen sich der Spieler befindet.</documentation>
+      <wsdl:input message="tns:MissionService.GetMissionsWithinRequest" />
+      <wsdl:output message="tns:MissionService.GetMissionsWithinResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="MissionObjectService.GetMissionObjectsForMissions">
+      <documentation>Gibt alle Missions Objekte zu einer Mission zurÃ¼ck.</documentation>
+      <wsdl:input message="tns:MissionObjectService.GetMissionObjectsForMissionsRequest" />
+      <wsdl:output message="tns:MissionObjectService.GetMissionObjectsForMissionsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="MissionObjectService.GetAllMissionObjectsForMissions">
+      <documentation>Gibt alle Missions Objekte zu einer Mission zurÃ¼ck.</documentation>
+      <wsdl:input message="tns:MissionObjectService.GetAllMissionObjectsForMissionsRequest" />
+      <wsdl:output message="tns:MissionObjectService.GetAllMissionObjectsForMissionsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="MissionService.GetAllMissionsAsArray">
+      <documentation>Liefert alle auf dem Server verfÃ¼gbaren Missionen.</documentation>
+      <wsdl:input message="tns:MissionService.GetAllMissionsAsArrayRequest" />
+      <wsdl:output message="tns:MissionService.GetAllMissionsAsArrayResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SimObjectService.GetAllSimObjectsAsArray">
+      <documentation>Liefert alle auf dem Server verfÃ¼gbaren SimObjects.</documentation>
+      <wsdl:input message="tns:SimObjectService.GetAllSimObjectsAsArrayRequest" />
+      <wsdl:output message="tns:SimObjectService.GetAllSimObjectsAsArrayResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomObjectService.GetAllCustomObjectsAsArray">
+      <documentation>Liefert alle auf dem Server verfÃ¼gbaren Benutzerobjekte.</documentation>
+      <wsdl:input message="tns:CustomObjectService.GetAllCustomObjectsAsArrayRequest" />
+      <wsdl:output message="tns:CustomObjectService.GetAllCustomObjectsAsArrayResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Nme2WsBinding" type="tns:Nme2WsPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="MissionService.GetMissionsWithin">
+      <soap:operation soapAction="urn:nme2#getmission" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MissionObjectService.GetMissionObjectsForMissions">
+      <soap:operation soapAction="urn:nme2#getmissionobjects" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MissionObjectService.GetAllMissionObjectsForMissions">
+      <soap:operation soapAction="urn:nme2#getallmissionobjects" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MissionService.GetAllMissionsAsArray">
+      <soap:operation soapAction="urn:nme2#getallmissions" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SimObjectService.GetAllSimObjectsAsArray">
+      <soap:operation soapAction="urn:nme2#getallsimobjects" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomObjectService.GetAllCustomObjectsAsArray">
+      <soap:operation soapAction="urn:nme2#getallcustomobjects" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:nme2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Nme2Ws">
+    <wsdl:port name="Nme2WsPort" binding="tns:Nme2WsBinding">
+      <soap:address location="http://nyx/priv_nme2/Webservice/MissionWebservice.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

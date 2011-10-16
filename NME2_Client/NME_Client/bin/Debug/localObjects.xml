@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<CustomObjectCatalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LastUpdated>2011-01-20T17:55:46.4641221+01:00</LastUpdated>
+  <CustomObjects>
+    <LocalCustomObject>
+      <Id>1</Id>
+      <Version>2011012017</Version>
+      <DownloadPath>http://hfs-wgbw.is-a-chef.com/priv_nme2/Objects/SimpleObject_1__20090505190000.zip</DownloadPath>
+      <Description>kleiner flieger</Description>
+    </LocalCustomObject>
+    <LocalCustomObject>
+      <Id>2</Id>
+      <Version>2011012017</Version>
+      <DownloadPath>http://hfs-wgbw.is-a-chef.com/priv_nme2/Objects/ifdg_a318-111_airbus_sas.zip</DownloadPath>
+      <Description>A318_CFM_IFDG_011</Description>
+    </LocalCustomObject>
+  </CustomObjects>
+</CustomObjectCatalog>

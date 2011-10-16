@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NME2_Client">
+</Property><Property Name="Projektmappendatei" Value="D:\Files\Develop\NME2_Client\NME2_Client.sln">
+</Property><Property Name="Date" Value="Samstag, 28. August 2010">
+</Property><Property Name="Time" Value="18:34">
+</Property></Properties><Event ErrorLevel="0" Project="NME2" Source="NME_Client\NME2.csproj" Description="Projekt erfolgreich konvertiert">
+</Event><Event ErrorLevel="3" Project="NME2" Source="NME_Client\NME2.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="NME2_Client.sln" Description="Die Projektmappe wurde erfolgreich konvertiert.">
+</Event><Event ErrorLevel="3" Project="" Source="NME2_Client.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NME2" Source="NME_Client\NME2.csproj" Description="Überprüfung abgeschlossen: Upgrade der Projektdateien nicht erforderlich.">
+</Event></UpgradeLog>
