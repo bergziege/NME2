@@ -6,5 +6,8 @@ Could be used to generate mission scenery for virtual airlines or stuff like tha
 History:
 ----------
 2011-10-16
+	Pushed all the existing client / server / management code.
+	System should work "out of the box" now. Just missing some sql script to generate the database.
+2011-10-16
 	Setting up git repo with all that stuff programmed over the last years.
 	Will drop a messsage in here if everything is transfered!
